@@ -3,14 +3,23 @@
 import requests
 from bs4 import BeautifulSoup
 
-# set target URL
-target_url = "https://tcuprs.com"
+# scrape note.com
 
-# load target URL
-html = requests.get(target_url)
+def scrape_note(url_note):
 
-# analysis target page
-soup = BeautifulSoup(html.content, "html.parser")
+    # set target URL
+    #target_url = "https://note.com/tooyotta/"
 
-# show all source
-print(soup)
+    # load target URL
+    html = requests.get(url_note)
+
+    # analysis target page
+    soup = BeautifulSoup(html.content, "html.parser")
+    found = soup.find(class_='o-timelineFooter__date')
+
+    return found
+
+
+url_note = "https://note.com/tooyotta/"
+found_note = scrape_note(url_note)
+print(found_note)
